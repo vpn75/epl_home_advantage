@@ -103,14 +103,24 @@ final_tab <- final %>%
       rows = winpct > pc_winpct
     )
   ) %>% 
-  #Color cells green where post-COVID home_goals, home_xg are improved
+  #Color cells green where post-COVID home_goals is improved
   tab_style(
     style = list(
       cell_fill(color = "#52eb34", alpha = 0.3)
     ),
     locations = cells_body(
-      columns = vars(home_goals, home_xg),
-      rows = 2:3
+      columns = vars(home_goals),
+      rows = home_goals > pc_home_goals
+    )
+  ) %>%
+  #Color cells green where post-COVID home XG is improved
+  tab_style(
+    style = list(
+      cell_fill(color = "#52eb34", alpha = 0.3)
+    ),
+    locations = cells_body(
+      columns = vars(home_xg),
+      rows = home_xg > pc_home_xg
     )
   ) %>% 
   #Add border separating post-COVID & pre-COVID sections
@@ -160,10 +170,10 @@ final_tab <- final %>%
     columns = vars(pc_home_goals, pc_home_xg, pc_winpct, pc_attendance)
   ) %>% 
   tab_source_note(
-    source_note = "Table: @DesiGoonerMD | Data: fbref.com"
+    source_note = md("**Table:** @DesiGoonerMD | **Data:** fbref.com")
   ) %>% 
   tab_header(
-    title = "How has lack of fans due to COVID impacted home performances?",
+    title = html("<b>How has lack of fans due to COVID impacted home performances?</b>"),
     subtitle = "Premier League"
   ) %>% 
   tab_footnote(
@@ -188,5 +198,5 @@ final_tab <- final %>%
   espnscrapeR::gt_theme_538() #Use fivethirtheight theme
 
 #Save our table as png file for sharing
-gtsave(final_tab, "C:/scripts/epl_home_advantage/final_table.png", zoom=2)
+gtsave(final_tab, "final_table.png", zoom=2)
   
