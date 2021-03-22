@@ -195,7 +195,7 @@ final_tab <- final %>%
     pc_winpct = "Win %",
     pc_attendance = "Attendance"
   ) %>% 
-  espnscrapeR::gt_theme_538() #Use fivethirtheight theme
+  espnscrapeR::gt_theme_538() #Use fivethirtyeight theme
 
 #Save our table as png file for sharing
 gtsave(final_tab, "final_table.png", zoom=2)
