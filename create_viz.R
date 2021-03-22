@@ -31,7 +31,7 @@ epl_final <-
   epl_clean %>% 
   mutate(date = lubridate::ymd(date), time = lubridate::hm(time), attendance = parse_number(attendance)) %>% 
   separate(score, c("home_goals", "away_goals")) %>% 
-  mutate(across("home_goals", "away_goals"), parse_number) %>% 
+  mutate(across(c("home_goals", "away_goals"), parse_number)) %>% 
   select(wk:home, away, home_goals, away_goals, attendance, home_xg=x_g_6, away_xg=x_g_8, -match_report, -notes) %>% 
   mutate(points = case_when(
     home_goals > away_goals ~ 3,
