@@ -77,14 +77,11 @@ covid <- epl_final %>%
   ) %>% 
   ungroup()
  
- #This CSV contains URL links to EPL team logo thumbnails on premierleague.com
- logos <- read_csv('epl_logo_urls.csv')
-
+#This CSV contains URL links to EPL team logo thumbnails on premierleague.com
+logos <- read_csv('epl_logo_urls.csv')
 
 #Join pre/post-COVID metrics into final dataframe 
 final <- inner_join(covid, pre_covid) %>% inner_join(logos, by=c("home"="team"))
-
-
 
 
 #Build our table
@@ -199,4 +196,4 @@ final_tab <- final %>%
 
 #Save our table as png file for sharing
 gtsave(final_tab, "final_table.png", zoom=2)
-  
+ 
