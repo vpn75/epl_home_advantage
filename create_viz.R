@@ -61,7 +61,7 @@ pre_covid <- epl_final %>%
     pc_home_goals = mean(home_goals),
     pc_home_xg = mean(home_xg),
     pc_points = mean(points),
-    pc_winpct = sum(home_goals > away_goals) / n()
+    pc_winpct = mean(home_goals > away_goals, na.rm = TRUE)
     ) %>% 
   ungroup()
  
@@ -73,7 +73,7 @@ covid <- epl_final %>%
     home_goals = mean(home_goals, na.rm = TRUE),
     home_xg = mean(home_xg, na.rm = TRUE),
     points = mean(points, na.rm = TRUE),
-    winpct = sum(home_goals > away_goals, na.rm = TRUE) / n()
+    winpct = mean(home_goals > away_goals, na.rm = TRUE)
   ) %>% 
   ungroup()
  
